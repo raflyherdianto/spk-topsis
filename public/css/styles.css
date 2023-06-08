@@ -1,0 +1,28 @@
+.login {
+    padding: 5px;
+    border-radius: 20px;
+    background: #488579;
+    color: white;
+    cursor: pointer;
+}
+
+.login:hover {
+    background:  #5fac9d;
+    text-decoration: none;
+}
+
+.rating{
+    display: grid;
+    grid-template-columns:  repeat(2, 1fr);
+}
+
+h6{
+    font-size: 16px;
+    text-align: end;
+    color: black;
+}
+
+.review{
+    font-size: 14px;
+    text-align: end;
+}
