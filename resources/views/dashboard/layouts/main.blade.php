@@ -66,7 +66,15 @@
         $(document).on('click', '.remove-input-field', function () {
             $(this).parents('.form-baru').remove();
         });
-
+        $("#dynamic-ar-3").click(function () {
+            ++i;
+            $("#dynamicAddRemove3").append(
+                '<div class="col-6 mb-3 form-baru"><div class="form-group"><label class="mb-2" for="first-name-column">Alternatif</label><select class="form-select mb-3" id="alternatif_id" name="addMoreInputFields[' + i + '][alternatif_id]"><option selected>Pilih...</option>@foreach ($alternatifs as $alternatif)<option value="{{ $alternatif->id }}">{{ $alternatif->code }}</option>@endforeach</select><label for="first-name-column" class="mb-2">Kriteria</label><select class="form-select mb-3" id="kriteria_id" name="addMoreInputFields[' + i + '][kriteria_id]"><option selected>Pilih...</option>@foreach ($kriterias as $kriteria)<option value="{{ $kriteria->id }}">{{ $kriteria->code }}</option>@endforeach</select><label for="first-name-column" class="mb-2">Nilai</label><input type="text" class="form-control mb-3" id="value" name="addMoreInputFields[' + i + '][value]" placeholder="Nilai..."></div><button type="button" class="btn btn-outline-danger me-1 mb-1 remove-input-field">Delete</button></div>'
+            );
+        });
+        $(document).on('click', '.remove-input-field', function () {
+            $(this).parents('.form-baru').remove();
+        });
     </script>
 
 </body>

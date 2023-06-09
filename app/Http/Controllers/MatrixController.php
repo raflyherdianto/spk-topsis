@@ -36,6 +36,7 @@ class MatrixController extends Controller
         return view('dashboard.matriks.index', [
             'title' => 'Matriks',
             'matrix' => $matrix,
+            'alternatifs' => Alternatif::orderBy('code', 'asc')->get(),
             'kriterias' => Kriteria::orderBy('code', 'asc')->get(),
             'data' => $data,
         ]);
@@ -58,7 +59,17 @@ class MatrixController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'addMoreInputFields.*.alternatif_id' => 'required',
+            'addMoreInputFields.*.kriteria_id' => 'required',
+            'addMoreInputFields.*.value' => 'required',
+        ]);
+
+        foreach ($request->addMoreInputFields as $key => $value) {
+            Matrix::create($value);
+        }
+        Alert::success('Success', 'Data berhasil ditambahkan');
+        return redirect('/dashboard/matriks');
     }
 
     /**

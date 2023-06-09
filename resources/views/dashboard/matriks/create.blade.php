@@ -5,7 +5,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last mb-2">
-                    <h3>Create Services</h3>
+                    <h3>Create Matriks</h3>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -14,7 +14,7 @@
                                 <a href="{{ url('dashboard') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Create Services
+                                Create Matriks
                             </li>
                         </ol>
                     </nav>
@@ -26,38 +26,23 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form action="{{ url('dashboard/service') }}" method="POST" class="form">
+                                    <form action="{{ url('dashboard/matriks') }}" method="POST" class="form">
                                         @csrf
-                                        <div class="row">
+                                        <div class="row" id="dynamicAddRemove3">
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="first-name-column">Nama Layanan</label>
-                                                    <input type="text"
-                                                        class="form-control
-                                                        @error('name') is-invalid @enderror"
-                                                        id="name" name="name" placeholder="Nama Layanan..."
-                                                        value="{{ old('name') }}">
-                                                    @error('name')
-                                                        <div class="text-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">Categories</label>
+                                                    <label for="first-name-column">Alternatif</label>
                                                     <select
-                                                        class="choices form-select @error('category_id') is-invalid @enderror"
-                                                        id="category_id" name="category_id"
-                                                        value="{{ old('category_id') }}">
-                                                        <option selected>Kategori</option>
-                                                        @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}">{{ $category->name }}
+                                                        class="form-select @error('alternatif_id') is-invalid @enderror"
+                                                        id="alternatif_id" name="addMoreInputFields[0][alternatif_id]"
+                                                        value="{{ old('alternatif_id') }}">
+                                                        <option selected>Pilih...</option>
+                                                        @foreach ($alternatifs as $alternatif)
+                                                            <option value="{{ $alternatif->id }}">{{ $alternatif->code }}
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    @error('category_id')
+                                                    @error('alternatif_id')
                                                         <div class="text-danger">
                                                             {{ $message }}
                                                         </div>
@@ -66,52 +51,43 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="first-name-column">Deskripsi</label>
+                                                    <label for="first-name-column">Kriteria</label>
+                                                    <select
+                                                        class="form-select @error('kriteria_id') is-invalid @enderror"
+                                                        id="kriteria_id" name="addMoreInputFields[0][kriteria_id]"
+                                                        value="{{ old('kriteria_id') }}">
+                                                        <option selected>Pilih...</option>
+                                                        @foreach ($kriterias as $kriteria)
+                                                            <option value="{{ $kriteria->id }}">{{ $kriteria->code }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('kriteria_id')
+                                                        <div class="text-danger">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="first-name-column">Nilai</label>
                                                     <input type="text"
                                                         class="form-control
-                                                        @error('description') is-invalid @enderror"
-                                                        id="description" name="description"
-                                                        placeholder="Deskripsi layanan..." value="{{ old('description') }}">
-                                                        @error('description')
+                                                        @error('value') is-invalid @enderror"
+                                                        id="value" name="addMoreInputFields[0][value]"
+                                                        placeholder="Nilai..." value="{{ old('value') }}">
+                                                        @error('value')
                                                         <div class="text-danger">
                                                             {{ $message }}
                                                         </div>
-                                                @enderror
-                                                    </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">Harga (Rp.)</label>
-                                                    <input type="number" class="form-control @error('price') is-invalid @enderror"
-                                                        id="price" name="price" placeholder="Harga layanan..." value="{{ old('price') }}">
-                                                        @error('price')
-                                                        <div class="text-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                @enderror
-                                                    </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">Rating</label>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <select class="form-select @error('rating') is-invalid @enderror"
-                                                    id="rating" name="rating" value="{{ old('rating') }}">
-                                                        <option selected>Bintang...</option>
-                                                        <option value=5>5</option>
-                                                        <option value=4>4</option>
-                                                        <option value=3>3</option>
-                                                        <option value=2>2</option>
-                                                        <option value=1>1</option>
-                                                    </select>
-                                                    @error('rating')
-                                                    <div class="text-danger">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
+                                                        @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex justify-content-end">
+                                                <button type="button" name="add" id="dynamic-ar-3" class="btn btn-outline-primary me-1 mb-1">
+                                                    Add Data
+                                                </button>
                                                 <button type="submit" class="btn btn-primary me-1 mb-1">
                                                     Submit
                                                 </button>

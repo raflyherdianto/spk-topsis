@@ -28,9 +28,9 @@
                     <h5 class="col-12 col-md-2 btn btn-primary" style="margin: 15px 15px 0px 15px">Create Data</h5>
                 </a>
                 @if (!$data->isEmpty())
-                <form action="/dashboard/matriks/truncate" method="POST">
+                <form action="/dashboard/hasil" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-danger" style="margin: 15px 15px 0px 15px">Hapus Semua Data</button>
+                    <button type="submit" class="col-12 col-md-2 btn btn-success" style="margin: 15px 15px 0px 15px">Hitung</button>
                   </form>
                 @endif
                 <div class="card-body">
@@ -61,6 +61,12 @@
                         </tbody>
                     </table>
                 </div>
+                @if (!$data->isEmpty())
+                <form action="/dashboard/matriks/truncate" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-danger" style="margin: 15px 15px 0px 15px">Hapus Semua Data</button>
+                  </form>
+                @endif
             </div>
         </section>
     </div>
