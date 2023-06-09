@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
+use App\Models\Alternatif;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreKriteriaRequest;
@@ -18,6 +19,7 @@ class KriteriaController extends Controller
         return view('dashboard.kriteria.index', [
             'title' => 'Kriteria',
             'kriterias' => Kriteria::all(),
+            'alternatifs'=> Alternatif::all(),
         ]);
     }
 

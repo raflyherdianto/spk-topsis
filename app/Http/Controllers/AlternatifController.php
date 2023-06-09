@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kriteria;
 use App\Models\Alternatif;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,6 +19,7 @@ class AlternatifController extends Controller
         return view('dashboard.alternatif.index', [
             'title' => 'Alternatif',
             'alternatifs' => Alternatif::all(),
+            'kriterias' => Kriteria::all(),
         ]);
     }
 

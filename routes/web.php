@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MatrixController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AlternatifController;
@@ -18,7 +19,7 @@ use App\Http\Controllers\AlternatifController;
 |
 */
 
-Route::resource('/dashboard/hasil', ResultController::class)->middleware('auth');
+Route::post('/dashboard/hasil', [ResultController::class,'hitung'])->middleware('auth');
 
 Route::post('/dashboard/matriks/truncate', [MatrixController::class, 'truncate'])->middleware('auth');
 
