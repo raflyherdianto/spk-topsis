@@ -30,6 +30,8 @@ class KriteriaController extends Controller
     {
         return view('dashboard.kriteria.create', [
             'title' => 'Tambah Kriteria',
+            'alternatifs'=> Alternatif::all(),
+            'kriterias' => Kriteria::all(),
         ]);
     }
 
@@ -45,6 +47,11 @@ class KriteriaController extends Controller
             'addMoreInputFields.*.weight' => 'required',
         ]);
 
+        $check = Kriteria::where('code', $request->addMoreInputFields[0]['code'])->first();
+        if($check){
+            Alert::error('Error', 'Kode kriteria sudah ada!');
+            return redirect('/dashboard/kriteria/create');
+        }
         foreach ($request->addMoreInputFields as $key => $value) {
             Kriteria::create($value);
         }
@@ -68,6 +75,7 @@ class KriteriaController extends Controller
         return view('dashboard.kriteria.edit', [
             'title' => 'Edit Kriteria',
             'kriteria' => Kriteria::find($id),
+            'alternatifs'=> Alternatif::all(),
         ]);
     }
 

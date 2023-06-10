@@ -19,6 +19,8 @@ use App\Http\Controllers\AlternatifController;
 |
 */
 
+Route::get('/dashboard/hasil', [ResultController::class,'index'])->middleware('auth');
+
 Route::post('/dashboard/hasil', [ResultController::class,'hitung'])->middleware('auth');
 
 Route::post('/dashboard/matriks/truncate', [MatrixController::class, 'truncate'])->middleware('auth');

@@ -30,6 +30,8 @@ class AlternatifController extends Controller
     {
         return view('dashboard.alternatif.create', [
             'title' => 'Tambah Alternatif',
+            'alternatifs' => Alternatif::all(),
+            'kriterias' => Kriteria::all(),
         ]);
     }
 
@@ -42,7 +44,11 @@ class AlternatifController extends Controller
             'addMoreInputFields.*.code' => 'required',
             'addMoreInputFields.*.name' => 'required',
         ]);
-
+        $check = Alternatif::where('code', $request->addMoreInputFields[0]['code'])->first();
+        if($check){
+            Alert::error('Error', 'Kode alternatif sudah ada!');
+            return redirect('/dashboard/alternatif/create');
+        }
         foreach ($request->addMoreInputFields as $key => $value) {
             Alternatif::create($value);
         }
@@ -66,6 +72,7 @@ class AlternatifController extends Controller
         return view('dashboard.alternatif.edit', [
             'title' => 'Edit Alternatif',
             'alternatif' => Alternatif::find($id),
+            'kriterias' => Kriteria::all(),
         ]);
     }
 

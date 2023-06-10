@@ -225,6 +225,14 @@
                     </table>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5>Kesimpulan:</h5>
+                    <p>Dengan menggunakan metode SAW & TOPSIS yang memiliki <b>{{ count($alternatifs) }} alternatif </b> dan <b>{{ count($kriterias) }} kriteria</b></p>
+                    <p>Alternatif terbaik adalah <b>{{ $rank[1]->alternatif_name }}</b> dengan nilai <b>{{ round($rank[1]->preferenceValue, 3) }}</b></p>
+                </div>
+            </div>
         </section>
     </div>
 @endsection

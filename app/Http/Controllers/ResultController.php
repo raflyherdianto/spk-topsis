@@ -10,6 +10,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ResultController extends Controller
 {
+
+    public function index(){
+        Alert::error('Error', 'Silahkan klik hitung pada menu Matriks!');
+        return redirect('/dashboard/matriks');
+    }
+
     public function hitung(){
         $data = Matrix::with('alternatif', 'kriteria')->latest()->get();
         $totalAlternatif = Alternatif::count();
