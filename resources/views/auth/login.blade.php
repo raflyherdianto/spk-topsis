@@ -5,7 +5,7 @@
         <div class="col-lg-5 col-12">
             <div id="auth-left">
                 <div class="auth-logo">
-                    <a href=""><h3 style="color: #435ebe">Punamu Decoration</h3></a>
+                    <a href=""><h3 style="color: #435ebe">SPK TOPSIS</h3></a>
                 </div>
                 <h1 class="auth-title">Log in.</h1>
                 <p class="auth-subtitle mb-5">
