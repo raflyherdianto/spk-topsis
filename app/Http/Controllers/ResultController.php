@@ -17,7 +17,7 @@ class ResultController extends Controller
     }
 
     public function hitung(){
-        $data = Matrix::with('alternatif', 'kriteria')->latest()->get();
+        $data = Matrix::with('alternatif', 'kriteria')->get();
         $totalAlternatif = Alternatif::count();
         $totalKriteria = Kriteria::count();
 

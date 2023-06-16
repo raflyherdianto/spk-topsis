@@ -17,7 +17,7 @@ class MatrixController extends Controller
      */
     public function index()
     {
-        $data = Matrix::with('alternatif', 'kriteria')->latest()->get();
+        $data = Matrix::with('alternatif', 'kriteria')->get();
         $matrix = [];
         foreach ($data as $value) {
             $matrix[$value->alternatif_id][$value->kriteria_id] = (object) [
@@ -88,6 +88,8 @@ class MatrixController extends Controller
         return view('dashboard.matriks.edit', [
             'title' => 'Edit Matriks',
             'matriks' => Matrix::findOrFail($id),
+            'alternatifs'=>Alternatif::orderBy('code', 'asc')->get(),
+            'kriterias'=>Kriteria::orderBy('code', 'asc')->get(),
         ]);
     }
 
