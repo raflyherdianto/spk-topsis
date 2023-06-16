@@ -164,7 +164,7 @@ class MatrixSeeder extends Seeder
             [
                 'alternatif_id' => 5,
                 'kriteria_id' => 2,
-                'value' => 14,
+                'value' => 28,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
